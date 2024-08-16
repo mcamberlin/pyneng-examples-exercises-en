@@ -16,3 +16,8 @@ this stage it is difficult otherwise test the result.
 """
 
 mac = "AAAA:BBBB:CCCC"
+mac_hex = mac.replace(':','')
+result = ""
+for letter in mac_hex:
+    result += "{:4b}".format(int(letter,16))
+print(result)

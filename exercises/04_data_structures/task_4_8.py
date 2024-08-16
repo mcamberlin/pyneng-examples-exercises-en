@@ -26,3 +26,8 @@ this stage it is difficult otherwise test the result.
 """
 
 ip = "192.168.3.1"
+Bytes = ip.split('.')
+print(f"""
+{Bytes[0]:<8}  {Bytes[1]:<8}  {Bytes[2]:<8}  {Bytes[3]:<8}
+{int(Bytes[0]):08b}  {int(Bytes[1]):08b}  {int(Bytes[2]):08b}  {int(Bytes[3]):08b}
+""")
