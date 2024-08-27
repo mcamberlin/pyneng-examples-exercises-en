@@ -62,3 +62,24 @@ trunk_template = [
     "switchport mode trunk",
     "switchport trunk allowed vlan {}",
 ]
+
+interface_mode = input("Enter interface mode (access/trunk): ")
+interface_type_and_number = input("Enter interface type and number: ")
+vlan_numbers = input("Enter VLAN(s) number: ")
+
+if interface_mode == "access":
+    commands = ["", f"interface {interface_type_and_number}"]
+    for cmd in access_template:
+        if(cmd == "switchport access vlan {}"):
+            commands.append(cmd.format(vlan_numbers))
+        else:
+            commands.append(cmd)
+    print("\n".join(commands))
+else:
+    commands = ["", f"interface {interface_type_and_number}"]
+    for cmd in trunk_template:
+        if(cmd == "switchport trunk allowed vlan {}"):
+            commands.append(cmd.format(vlan_numbers))
+        else:
+            commands.append(cmd)
+    print("\n".join(commands))   

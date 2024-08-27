@@ -41,3 +41,23 @@ Then the network address will be the first 28 characters from bin_ip + 0000
 Restriction: All tasks must be done using the topics covered in this and previous chapters.
 
 """
+inp = input("Enter IP network: ")
+ip_address, network_prefix = inp.split('/')
+network_prefix = int(network_prefix)
+
+ip_address_decimal = ip_address.split('.')
+ip_address_bin_str = f"{int(ip_address_decimal[0]):08b}{int(ip_address_decimal[1]):08b}{int(ip_address_decimal[2]):08b}{int(ip_address_decimal[3]):08b}"
+
+network_address_bin_str = ip_address_bin_str[0:network_prefix] + "0"*(32-network_prefix)
+network_mask_bin_str = '1'*network_prefix + '0'*(32-network_prefix)
+
+print(f"""
+Network: 
+{int(network_address_bin_str[0:8],2):<8} {int(network_address_bin_str[8:16],2):<8} {int(network_address_bin_str[16:24],2):<8} {int(network_address_bin_str[24:32],2):<8}
+{network_address_bin_str[0:8]} {network_address_bin_str[8:16]} {network_address_bin_str[16:24]} {network_address_bin_str[24:32]}
+
+Mask:
+/{network_prefix}
+{int(network_mask_bin_str[0:8],2):<8} {int(network_mask_bin_str[8:16],2):<8} {int(network_mask_bin_str[16:24],2):<8} {int(network_mask_bin_str[24:32],2):<8} 
+{network_mask_bin_str[0:8]} {network_mask_bin_str[8:16]} {network_mask_bin_str[16:24]} {network_mask_bin_str[24:32]}
+""")
